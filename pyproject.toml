@@ -1,0 +1,29 @@
+[project]
+dependencies = []
+description = "Simple Python CLI application with tests, formatting, linting and CI"
+name = "python-good-repository"
+requires-python = ">=3.12"
+version = "0.1.0"
+
+[project.optional-dependencies]
+dev = [
+  "black==24.10.0",
+  "pylint==3.3.3",
+  "pytest==8.3.4",
+]
+
+[tool.black]
+line-length = 88
+target-version = ["py312"]
+
+[tool.pylint.main]
+py-version = "3.12"
+
+[tool.pylint.format]
+max-line-length = 88
+
+[tool.pylint.messages_control]
+disable = [
+  "missing-module-docstring",
+  "missing-function-docstring",
+]

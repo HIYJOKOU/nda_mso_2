@@ -1,0 +1,34 @@
+name: Python application
+
+on:
+  push:
+    branches: [main, master, develop]
+  pull_request:
+    branches: [main, master, develop]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Create virtualenv and install dependencies
+        run: python scripts/create_venv.py
+
+      - name: Format check
+        run: python scripts/format_check.py
+
+      - name: Lint
+        run: python scripts/lint.py
+
+      - name: Test with pytest
+        run: python scripts/test.py
